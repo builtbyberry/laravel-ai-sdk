@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BuiltByBerry\LaravelAiSdk;
 
-use BuiltByBerry\LaravelAiSdk\Commands\LaravelAiSdkCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -28,8 +27,10 @@ class LaravelAiSdkServiceProvider extends PackageServiceProvider
 
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__.'/../config/ai.php' => config_path('ai.php'),
-        ]);
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/ai.php' => config_path('ai.php'),
+            ], 'config');
+        }
     }
 }
