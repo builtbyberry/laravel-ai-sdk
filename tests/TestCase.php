@@ -2,9 +2,9 @@
 
 namespace BuiltByBerry\LaravelAiSdk\Tests;
 
+use BuiltByBerry\LaravelAiSdk\LaravelAiSdkServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use BuiltByBerry\LaravelAiSdk\LaravelAiSdkServiceProvider;
 
 class TestCase extends Orchestra
 {
