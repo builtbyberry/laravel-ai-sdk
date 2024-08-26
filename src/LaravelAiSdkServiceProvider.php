@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BuiltByBerry\LaravelAiSdk;
 
+use BuiltByBerry\LaravelAiSdk\Commands\LaravelAiSdkCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,6 +21,7 @@ class LaravelAiSdkServiceProvider extends PackageServiceProvider
     {
         $this->app->singleton(AI::class, function ($app) {
             $driver = config('ai.driver');
+
             return new AI(new $driver);
         });
     }
@@ -30,5 +32,4 @@ class LaravelAiSdkServiceProvider extends PackageServiceProvider
             __DIR__.'/../config/ai.php' => config_path('ai.php'),
         ]);
     }
-
 }

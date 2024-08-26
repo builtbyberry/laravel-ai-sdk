@@ -8,9 +8,7 @@ use BuiltByBerry\LaravelAiSdk\Contracts\DriverInterface;
 
 class AI
 {
-    public function __construct(protected DriverInterface $driver)
-    {
-    }
+    public function __construct(protected DriverInterface $driver) {}
 
     public function execute(string $input): array
     {
