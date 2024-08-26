@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BuiltByBerry\LaravelAiSdk;
 
 use Spatie\LaravelPackageTools\Package;
@@ -22,4 +24,20 @@ class LaravelAiSdkServiceProvider extends PackageServiceProvider
             ->hasMigration('create_laravel_ai_sdk_table')
             ->hasCommand(LaravelAiSdkCommand::class);
     }
+
+    public function register(): void
+    {
+        $this->app->singleton(AI::class, function ($app) {
+            $driver = config('ai.driver');
+            return new AI(new $driver);
+        });
+    }
+
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/../config/ai.php' => config_path('ai.php'),
+        ]);
+    }
+
 }
